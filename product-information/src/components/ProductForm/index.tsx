@@ -32,6 +32,8 @@ export const ProductForm = () => {
             className="w-100 m-2 p-3 p-sm-5 bg-white rounded-5 shadow-lg"
             style={{ maxWidth: 720 }}
         >
+            <h2 className="mb-5 text-center">Wlecome to <i>Product Information Form</i></h2>
+
             <ProductTitle error={errors.title} register={register} />
 
             <ProductDescription error={errors.description} register={register} setValue={setValue} />
