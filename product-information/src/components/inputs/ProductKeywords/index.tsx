@@ -19,7 +19,6 @@ const ProductKeywords: FC<IProps> = ({ setValue }) => {
 
     const handleChange = (newValue: MultiValue<OptionType>, actionMeta: any) => {
         setSelectedOptions(newValue)
-        console.log(newValue)
     }
 
     const handleCreateOption = (inputValue: string) => {
@@ -27,9 +26,9 @@ const ProductKeywords: FC<IProps> = ({ setValue }) => {
         setSelectedOptions([...(selectedOptions), newOption])
     }
     useEffect(() => {
-        const selectedValues = selectedOptions.map((option) => option.value);
-        setValue('keywords', selectedValues);
-    }, [selectedOptions, setValue]);
+        const selectedValues = selectedOptions.map((option) => option.value)
+        setValue('keywords', selectedValues)
+    }, [selectedOptions, setValue])
 
     return (
 

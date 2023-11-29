@@ -24,7 +24,7 @@ export const ProductForm = () => {
 
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
-    const wbullets = watch('bullets')
+    const wbullets = watch('bullets') ?? []
 
     return (
         <Form

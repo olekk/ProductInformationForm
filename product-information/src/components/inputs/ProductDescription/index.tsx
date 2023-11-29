@@ -13,11 +13,11 @@ interface IProps {
 
 const ProductDescription: FC<IProps> = ({ error, register, setValue }) => {
     useEffect(() => {
-        register("description");
-    }, [register]);
+        register("description")
+    }, [register])
 
     const onEditorStateChange = (editorState: string) => {
-        setValue("description", editorState);
+        setValue("description", editorState)
     }
     const modules = {
         toolbar: [
