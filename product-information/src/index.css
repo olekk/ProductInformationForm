@@ -5,4 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #555;
+}
+
+.ql-snow.ql-toolbar, .ql-snow.ql-container {
+  border: none;
+}
+.ql-snow.ql-snow.ql-toolbar {
+  border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 }
