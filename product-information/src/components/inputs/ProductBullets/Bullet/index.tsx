@@ -3,29 +3,28 @@ import { Inputs } from 'components/types';
 import { ListGroupItem, FormControl, Button } from 'react-bootstrap';
 import { PlusSquare, XOctagon, Save, PencilSquare, Trash } from 'react-bootstrap-icons';
 import { UseFormSetValue } from 'react-hook-form';
-import { v4 as uuid } from 'uuid';
 
 interface IProps {
-    id: string,
+    id: number,
     text?: string,
-    onDelete?: (key: string) => void,
-    setValue: UseFormSetValue<Inputs>
+    onDelete?: (id: number) => void,
+    onAdd?: (val: string) => void,
+    setValue?: UseFormSetValue<Inputs>
 }
 
-const Bullet: FC<IProps> = ({ id, text, onDelete, setValue }) => {
+const Bullet: FC<IProps> = ({ id, text, onDelete, onAdd, setValue }) => {
 
     const [isEdit, setIsEdit] = useState(false)
     const [newVal, setNewVal] = useState('')
-    const currentId: string = id ? id : uuid()
 
     const onSave = () => {
-        setValue(`bullets.${currentId}.text`, newVal)
+        setValue?.(`bullets.${id}`, newVal)
     }
 
     // Empty Bullet to add new entries
-    if (!id) {
+    if (id === -1) {
         return (
-            <ListGroupItem key={0} className="d-flex">
+            <ListGroupItem key={0} className="d-flex border-top">
 
                 <FormControl
                     type="text"
@@ -35,7 +34,7 @@ const Bullet: FC<IProps> = ({ id, text, onDelete, setValue }) => {
                     onChange={val => setNewVal(val.target.value)}
                 />
 
-                <Button variant="outline-success" className="p-1 mx-1" onClick={() => { onSave(); setNewVal("") }}>
+                <Button variant="outline-success" className="p-1 mx-1" onClick={() => { onAdd?.(newVal); setNewVal("") }}>
                     <PlusSquare size={20} />
                 </Button>
 
@@ -48,7 +47,7 @@ const Bullet: FC<IProps> = ({ id, text, onDelete, setValue }) => {
     }
     // Existing Bullet in a state edition or static 
     return (
-        <ListGroupItem key={currentId} className="d-flex">
+        <ListGroupItem key={id} className="d-flex">
             {isEdit ? (<>
                 <FormControl
                     type="text"
@@ -73,7 +72,7 @@ const Bullet: FC<IProps> = ({ id, text, onDelete, setValue }) => {
                     <PencilSquare size={20} />
                 </Button>
 
-                <Button variant="outline-danger" className="p-1" onClick={() => onDelete?.(currentId)}>
+                <Button variant="outline-danger" className="p-1" onClick={() => onDelete?.(id)}>
                     <Trash size={20} />
                 </Button>
             </>)}
